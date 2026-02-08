@@ -1,0 +1,218 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+% Page layout
+\geometry{left=3cm, right=3cm, top=3cm, bottom=3cm}
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+% Title
+\title{\textbf{Quantitative Predictions for Prime Values of the Titan Polynomial:\\[4pt]
+The Bateman--Horn Constant and Asymptotic Density}}
+\author{\textbf{Ruqing Chen}\\
+GUT Geoservice Inc., Montreal, Quebec\\
+\texttt{ruqing@hotmail.com}}
+\date{February 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The polynomial $Q(n)=n^{47}-(n-1)^{47}$ is a degree-46 cyclotomic
+norm form whose values have no prime factor less than~$283$.
+While this algebraic rigidity does not alter the fundamental sieve
+dimension ($\kappa=1$), it significantly impacts the local density
+of prime values.
+In this paper, we rigorously compute the Bateman--Horn constant
+$C_Q$ associated with this sequence.
+We show that the exclusion of small prime factors leads to an
+Euler product enhancement of $C_Q \approx 8.68$ relative to the
+logarithmic integral for degree-46 polynomials.
+This large constant implies that, under the Bateman--Horn heuristic,
+prime values of $Q(n)$ occur with a frequency approximately $8.7$
+times that predicted for a generic polynomial of the same degree.
+We provide numerical evidence supporting the asymptotic prediction
+$\pi_Q(x) \sim \frac{C_Q}{46}\operatorname{Li}(x)$.
+\end{abstract}
+
+\medskip
+\noindent\textbf{MSC 2020:} 11N32, 11R18, 11Y35
+
+\noindent\textbf{Keywords:} Bateman--Horn conjecture,
+cyclotomic norm form, Euler product, polynomial primes,
+shielding property, prime density
+\section{Introduction}
+The Bateman--Horn conjecture~\cite{BatemanHorn} provides a heuristic
+asymptotic formula for the distribution of prime values of
+polynomials.
+For a single irreducible polynomial $f(n)$ of degree~$d$, the number
+of integers $n \le x$ such that $f(n)$ is prime is denoted by
+$\pi_f(x)$ and is conjectured to satisfy
+\[
+\pi_f(x) \;\sim\; C_f \int_2^x \frac{dt}{\log f(t)}
+\;\sim\; \frac{C_f}{d} \int_2^x \frac{dt}{\log t}
+\;=\; \frac{C_f}{d}\,\operatorname{Li}(x),
+\]
+where
+\[
+C_f = \prod_p \frac{1-\omega_f(p)/p}{1-1/p}
+\]
+and $\omega_f(p)$ is the number of solutions to
+$f(n) \equiv 0 \pmod{p}$.
+For the Titan polynomial $Q(n) = n^{47} - (n-1)^{47}$---we adopt
+this name as a convenient label, without implying any established
+nomenclature---the degree is $d=46$.
+The local root structure established in~\cite{ChenTitan} shows that
+$\omega_Q(p) = 0$ for all primes $p < 283$.
+In this paper, we compute the specific enhancement constant $C_Q$
+resulting from this shielding property and compare the predictions
+with numerical data in verifiable ranges.
+\section{The Shielding Property and $\omega_Q(p)$}
+The local root structure of $Q(n)$, established
+in~\cite{ChenTitan}, is:
+\begin{enumerate}
+    \item If $p < 283$, then $\omega_Q(p) = 0$.
+    \item If $p \ge 283$ and $p \equiv 1 \pmod{47}$, then $\omega_Q(p) = 46$.
+    \item If $p \ge 283$ and $p \not\equiv 1 \pmod{47}$, then $\omega_Q(p) = 0$.
+\end{enumerate}
+
+\begin{remark}
+The vanishing $\omega_Q(p)=0$ for $p<283$ arises from three
+distinct mechanisms:
+(i)~for $p\in\{2,3,47\}$, the condition $(p-1)\mid 46$ implies
+$Q(n)\equiv 1\pmod{p}$ for all~$n$ (congruence rigidity);
+(ii)~for $p=47$ specifically, this is also the ramified prime
+of $\mathbb{Q}(\zeta_{47})/\mathbb{Q}$;
+(iii)~for all other primes $p<283$ with $p\not\equiv 1\pmod{47}$,
+the map $x\mapsto x^{47}$ is a bijection on
+$(\mathbb{Z}/p\mathbb{Z})^\times$, so no nontrivial $47$-th
+root of unity exists.
+The smallest prime $p\equiv 1\pmod{47}$ is $283$, which is why the
+shielding extends up to that threshold.
+\end{remark}
+
+This local root structure implies that for small primes, the local
+density factor $\frac{1-\omega_Q(p)/p}{1-1/p}$ simplifies to
+$\frac{p}{p-1} > 1$, thereby contributing a significant boost
+to~$C_Q$.
+\section{Computation of the Bateman--Horn Constant}
+The constant $C_Q$ is given by the infinite product:
+\[
+C_Q = \prod_p \left( \frac{1-\omega_Q(p)/p}{1-1/p} \right).
+\]
+We split the product into two parts: small primes ($p < 283$) and large primes ($p \ge 283$).
+\subsection{Small Primes Product ($P_{\mathrm{small}}$)}
+For $p < 283$, $\omega_Q(p) = 0$. The partial product is:
+\[
+P_{\mathrm{small}} = \prod_{p < 283} \frac{p}{p-1}.
+\]
+Direct calculation over the 60 primes less than 283 yields:
+\[
+P_{\mathrm{small}} \approx 10.19.
+\]
+(Note: This value is consistent with Mertens' Theorem approximation $e^\gamma \log(283) \approx 10.05$).
+\subsection{Large Primes Product ($P_{\mathrm{large}}$)}
+For $p \ge 283$, non-trivial terms occur only when $p \equiv 1 \pmod{47}$.
+\[
+P_{\mathrm{large}} = \prod_{p \ge 283} \frac{1-\omega_Q(p)/p}{1-1/p}.
+\]
+This product converges conditionally. Numerical evaluation of the total product $C_Q$ up to large limits yields:
+\begin{itemize}
+    \item $X = 10^5$: $C_Q \approx 8.70$
+    \item $X = 10^7$: $C_Q \approx 8.68$
+\end{itemize}
+We adopt the best estimate $C_Q \approx 8.68$.
+\section{Asymptotic Prediction vs.\ Data}
+The Bateman--Horn asymptotic prediction for the prime counting
+function of $Q(n)$ is:
+\[
+\pi_Q(x) \;\sim\; \frac{C_Q}{46}\,\operatorname{Li}(x)
+\;\approx\; \frac{8.68}{46}\,\operatorname{Li}(x)
+\;\approx\; 0.1887\,\operatorname{Li}(x).
+\]
+Table~\ref{tab:comparison} compares the observed prime counts with
+our prediction.
+The observed values were computed using the Miller--Rabin primality
+test (with deterministic bases for this range) and verified
+independently.
+
+\begin{table}[h]
+\centering
+\caption{Predicted vs.\ Observed Prime Counts for $Q(n)$.
+Prediction uses $C_Q=8.68$.}
+\label{tab:comparison}
+\begin{tabular}{crrc}
+\toprule
+$x$ & Observed $\pi_Q(x)$ & Predicted $\frac{C_Q}{46}\operatorname{Li}(x)$ & Relative Error \\
+\midrule
+$10{,}000$ & 232 & 235 & $-1.3\%$ \\
+$20{,}000$ & 429 & 432 & $-0.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}
+The agreement to within $1{-}2\%$ at these small ranges is
+consistent with expectations for the Bateman--Horn conjecture,
+which is asymptotic.
+The slight overestimate by the prediction is consistent with the
+usual lower-order correction terms.
+The verification range is limited to $x \le 20{,}000$ due to the
+rapid growth of $Q(n)$: at $n=20{,}000$,
+$Q(n) \approx n^{46} \approx 10^{197}$, requiring substantial
+computational resources for primality testing.
+Large-scale verification up to $n = 2\times 10^9$
+($15.4$ million $Q$-primes) is reported in a companion paper.
+\end{remark}
+\section{Conclusion}
+We have rigorously computed the Bateman--Horn constant for the Titan
+polynomial $Q(n)=n^{47}-(n-1)^{47}$.
+The value $C_Q \approx 8.68$ reflects the sequence's strong bias
+towards primality due to the absence of small prime factors:
+all~$60$ primes below~$283$ contribute a factor
+$p/(p-1) > 1$ to the Euler product, while only the sparse set of
+splitting primes $p\equiv 1\pmod{47}$ contributes factors
+$(1-46/p)/(1-1/p) < 1$.
+The resulting enhancement means that prime values of $Q(n)$ occur
+approximately $8.7$ times more frequently than for a generic
+degree-$46$ polynomial.
+This quantitative analysis complements the algebraic and analytic
+results established in companion papers, providing a complete
+picture of the prime distribution of this cyclotomic norm form.
+
+\medskip
+\noindent\textbf{Data availability.}
+The \LaTeX{} source, verification scripts, and supplementary data
+are available at:
+\begin{center}
+\url{https://github.com/Ruqing1963/Q47-BatemanHorn-Constant}
+\end{center}
+
+\begin{thebibliography}{9}
+
+\bibitem{ChenTitan}
+R.~Chen,
+\textit{Prime Values of a Cyclotomic Norm Polynomial and a
+Conjectural Bounded Gap Phenomenon},
+Preprint (2026),
+\url{https://zenodo.org/records/18521551}.
+
+\bibitem{BatemanHorn}
+P.\,T.~Bateman and R.\,A.~Horn,
+\textit{A heuristic asymptotic formula concerning the distribution
+of prime numbers},
+Math.\ Comp.\ \textbf{16} (1962), 363--367.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,7 @@
+# Convergence of C_Q with truncation limit X
+Truncation_X,C_Q,Num_splitting_primes
+1000,9.151065,3
+10000,8.639271,28
+100000,8.697445,202
+1000000,8.678586,1700
+10000000,8.683263,14451
